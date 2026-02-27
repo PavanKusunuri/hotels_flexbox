@@ -4,6 +4,12 @@ A modern, responsive vacation rental website inspired by Airbnb's clean design p
 
 ![StayBnB Preview](https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=600&fit=crop)
 
+## Live Demo
+
+**[View Live Site](https://pavankusunuri.github.io/hotels_flexbox/)**
+
+The website is hosted on GitHub Pages and automatically deploys on every push to the `master` branch.
+
 ## About
 
 StayBnB is a beautifully crafted vacation rental landing page that demonstrates:
@@ -69,6 +75,9 @@ hotels_flexbox/
 │   └── _components.scss # UI components
 ├── img/                # Image assets
 │   └── SVG/            # SVG icons
+├── .github/
+│   └── workflows/
+│       └── static.yml  # GitHub Pages deployment workflow
 ├── package.json        # Project dependencies
 └── README.md           # This file
 ```
@@ -118,10 +127,52 @@ hotels_flexbox/
 - Optimized image URLs with width/height parameters
 - Minimal JavaScript footprint
 
+## Deployment
+
+This project is automatically deployed to **GitHub Pages** using GitHub Actions.
+
+### How It Works
+
+1. **GitHub Actions Workflow**: A workflow file (`.github/workflows/static.yml`) is configured to trigger on every push to the `master` branch
+
+2. **Automatic Deployment**: When code is pushed:
+   - GitHub Actions checks out the repository
+   - Uploads the static files as an artifact
+   - Deploys to GitHub Pages
+
+3. **Live URL**: The site is served at `https://pavankusunuri.github.io/hotels_flexbox/`
+
+### Workflow Configuration
+
+```yaml
+# Triggers on push to master branch
+on:
+  push:
+    branches: ["master"]
+
+# Deploys using GitHub's official Pages actions
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/deploy-pages@v4
+```
+
+### Setting Up GitHub Pages
+
+To enable GitHub Pages for your own fork:
+
+1. Go to **Settings** > **Pages** in your repository
+2. Under **Source**, select **GitHub Actions**
+3. Push to `master` branch to trigger deployment
+
 ## License
 
 This project is open source and available for learning purposes.
 
 ---
 
-**Built with by modern web technologies**
+**Built with modern web technologies | Hosted on GitHub Pages**
